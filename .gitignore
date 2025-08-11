@@ -1,3 +1,33 @@
+# Node.js / Next.js
+webapp/node_modules/
+webapp/.next/
+webapp/.env*
+webapp/.DS_Store
+webapp/.eslintcache
+webapp/.vscode/
+webapp/.turbo/
+webapp/.vercel/
+webapp/.idea/
+webapp/dist/
+webapp/out/
+
+# Python
+romanization_service/__pycache__/
+romanization_service/*.pyc
+romanization_service/.env*
+romanization_service/.DS_Store
+romanization_service/.vscode/
+romanization_service/.idea/
+
+# OS/Editor
+*.log
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+.env*
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
