@@ -21,9 +21,8 @@ async function fetchJson(url, cookieHeader) {
 export default async function DashboardPage() {
   const h = await headers();
   const cookieHeader = h.get('cookie') || '';
-  const host = h.get('host') || 'localhost:3000';
-  const protocol = host.includes('localhost') || host.startsWith('127.') ? 'http' : 'https';
-  const base = process.env.RENDER_EXTERNAL_URL || `${protocol}://${host}`;
+  // Use NEXT_PUBLIC_BASE_URL for API calls
+  const base = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:10000';
 
   const [tracksData, playlistsData] = await Promise.all([
     fetchJson(base + '/api/tracks', cookieHeader),
