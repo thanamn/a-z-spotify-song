@@ -1,5 +1,38 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## My Spotify App
 
+Spotify OAuth (Authorization Code with refresh) using Next.js App Router and `spotify-web-api-node`.
+
+### Environment Variables (.env.local)
+
+```
+SPOTIFY_CLIENT_ID=your_client_id
+SPOTIFY_CLIENT_SECRET=your_client_secret
+SPOTIFY_REDIRECT_URI=http://localhost:3000/api/auth/callback
+SESSION_SECRET=change_this_secret
+```
+
+For Render production set `SPOTIFY_REDIRECT_URI=https://yourapp.onrender.com/api/auth/callback`.
+
+### Scripts
+
+`npm run dev` - start dev server
+
+### Auth Flow
+1. User hits `/api/auth/login` -> redirected to Spotify
+2. Spotify redirects to `/api/auth/callback` -> tokens stored in httpOnly cookies (signed)
+3. Data routes `/api/tracks` & `/api/playlists` read & refresh tokens when needed
+
+### Deployment (Render)
+1. Build Command: `npm install && npm run build`
+2. Start Command: `npm start`
+3. Add env vars above (Render sets `PORT` automatically)
+4. Use `RENDER_EXTERNAL_URL` (automatically provided) for absolute fetches if needed
+
+### Notes
+- Refresh logic triggers when access token < 60s remaining.
+- Cookies are signed (HMAC SHA256) to detect tampering.
+- Adjust limits or add more endpoints as desired.
 ## Getting Started
 
 First, run the development server:
