@@ -7,17 +7,16 @@ const nextConfig = {
 	},
 	serverRuntimeConfig: {},
 	output: 'standalone',
-	async redirects() {
-		return [
-			{
-				source: '/(.*)',
-				has: [{ type: 'host', value: 'a-z-spotify-song-web-app.onrender.com' }],
-				protocol: 'http',
-				destination: 'https://a-z-spotify-song-web-app.onrender.com/:path*',
-				permanent: true,
-			},
-		];
-	}
+		async redirects() {
+			return [
+				{
+					source: '/:path*',
+					has: [{ type: 'host', value: 'a-z-spotify-song-web-app.onrender.com' }],
+					destination: 'https://a-z-spotify-song-web-app.onrender.com/:path*',
+					permanent: true,
+				},
+			];
+		}
 };
 
 export default nextConfig;
