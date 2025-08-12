@@ -1,6 +1,14 @@
 import { NextResponse } from 'next/server';
 
 export function middleware(request) {
+  const url = new URL(request.url);
+  const proto = request.headers.get('x-forwarded-proto');
+  // Enforce HTTPS only if behind proxy indicates HTTP
+  if (proto && proto !== 'https') {
+    url.protocol = 'https:';
+    return NextResponse.redirect(url.toString(), 308);
+  }
+
   const response = NextResponse.next();
   response.headers.set('X-Content-Type-Options', 'nosniff');
   response.headers.set('X-Frame-Options', 'DENY');

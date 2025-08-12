@@ -6,17 +6,7 @@ const nextConfig = {
 		SPOTIFY_REDIRECT_URI: process.env.SPOTIFY_REDIRECT_URI
 	},
 	serverRuntimeConfig: {},
-	output: 'standalone',
-		async redirects() {
-			return [
-				{
-					source: '/:path*',
-					has: [{ type: 'host', value: 'a-z-spotify-song-web-app.onrender.com' }],
-					destination: 'https://a-z-spotify-song-web-app.onrender.com/:path*',
-					permanent: true,
-				},
-			];
-		}
+	output: 'standalone'
 };
 
 export default nextConfig;
